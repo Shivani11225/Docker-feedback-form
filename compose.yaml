@@ -1,0 +1,39 @@
+
+services:
+  web:
+    build: .
+    container_name: feedback-web
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: mysql
+      DB_USER: feedback_user
+      DB_PASSWORD: feedback_pass
+      DB_NAME: feedback_db
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.4
+    container_name: feedback-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_demo_pass
+      MYSQL_DATABASE: feedback_db
+      MYSQL_USER: feedback_user
+      MYSQL_PASSWORD: feedback_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost",
+             "-u", "root", "-proot_demo_pass"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+
