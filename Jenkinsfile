@@ -40,8 +40,8 @@ post {
         failure {
               script{
                   emailext from: "mskrishivani11@gmail.com",
-                  to: "kumarishivani00142@gmail.com",
-                  body: "Shivani your latest Build is failed",
+                  to: "satyamverma94720@gmail.com",
+                  body: "Sorry!!!, Kl subah jaga dena, mera CI/CD mail set-up nhi ho rha tha to pareshan the",
                   subject: "Build failed"
               }
         }
