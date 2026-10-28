@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "docker buil -t my-app ."
+                sh "docker build -t my-app ."
             }
         }
          stage('Test') {
@@ -40,8 +40,8 @@ post {
         failure {
               script{
                   emailext from: "mskrishivani11@gmail.com",
-                  to: "satyamverma94720@gmail.com",
-                  body: "Sorry!!!, Kl subah jaga dena, mera CI/CD mail set-up nhi ho rha tha to pareshan the",
+                  to: "mskrishivani11@gmail.com",
+                  body: "Shivani your latest build has failed.",
                   subject: "Build failed"
               }
         }
