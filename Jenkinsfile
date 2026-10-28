@@ -34,5 +34,34 @@ pipeline {
                 sh 'docker compose up --build'
             }
         }
+}
+
+post {
+        failure {
+              script{
+                  emailext from: "mskrishivani11@gmail.com",
+                  to: "mskrishivani11@gmail.com",
+                  body: "Shivani your latest Build is failed",
+                  subject: "Build failed"
+              }
+        }
+    
+    success{
+            script{
+                  emailext from: "mskrishivani11@gmail.com",
+                  to: "mskrishivani11@gmail.com",
+                  body: "Shivani your latest Build is success",
+                  subject: "Build success"
+              }
+        }
+        
+        aborted{
+            script{
+                  emailext from: "mskrishivani11@gmail.com",
+                  to: "mskrishivani11@gmail.com",
+                  body: "Shivani, your latest Build is aborted",
+                  subject: "Build aborted"
+              }
+        }
     }
 }
