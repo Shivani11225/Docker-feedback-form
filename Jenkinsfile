@@ -7,6 +7,11 @@ pipeline {
                 git url: "https://github.com/Shivani11225/Docker-feedback-form.git"
             }
         }
+        stage('Trivy file system scan'){
+            steps{
+                sh "trivy fs . -o results.json"
+            }
+        }
         stage('Build') {
             steps {
                 sh "docker build -t my-app ."
